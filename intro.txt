@@ -1,0 +1,47 @@
+import cv2
+需要先使用PIP 或其他方式 安装opencv
+pip install opencv-python
+
+
+文件说明：
+
+一、facecollect.py
+收集人脸图片保存在D:\\1pyidentity\\imgdata\\中的子目录，
+imadata下的子目录包括
+(1)guest\\房间号(1101/1102/....)
+(2)allface (保存所有的照片包括顾客及酒店内部人员)
+(3)hotel\\部门号(1/2/3/4....)
+提前在磁盘中建立父目录D:\\1pyidentity\\imgdata\\guest、D:\\1pyidentity\\imgdata\\hotel
+否则os.mkdir()会报错
+
+每次调用将会收集照片共40张，存储在本地磁盘
+
+
+二、trainall.py
+将文件夹D:\\1pyidentity\\imgdata\\allface下的所有图片进行处理后进行训练
+训练使用Opencv下的LBP算法，人脸检测更新为基于caffe框架下的SSD深度卷积神经网络模型，做人脸检测。
+
+.prototxt和.caffemodel的作用如下：
+The .prototxt file(s) which define the model architecture (i.e., the layers themselves)
+The .caffemodel file which contains the weights for the actual layers
+
+三、resnet_ssd_face_detection_python.py（新）
+通过SSD框架进行人脸检测并通过LBP算法匹配与识别身份信息
+仅匹配allface下的人脸信息
+
+四、identyall.py（旧）
+人脸检测并识别allface,更新前用的这个
+
+    五、identy.py
+    LBP人脸检测并识别guest//房间号中的人脸信息
+    (开门功能)
+
+    六、train.py
+    用保存在guest//房间号中的人脸图片通过就的人脸识别算法检测进行预处理后训练
+
+
+
+
+
+
+
